@@ -1,0 +1,29 @@
+[2025-04-10T01:34:14.930+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-10T01:34:15.055+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: test_dag.test_task scheduled__2025-04-09T00:00:00+00:00 [queued]>
+[2025-04-10T01:34:15.090+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: test_dag.test_task scheduled__2025-04-09T00:00:00+00:00 [queued]>
+[2025-04-10T01:34:15.092+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-04-10T01:34:15.158+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): test_task> on 2025-04-09 00:00:00+00:00
+[2025-04-10T01:34:15.234+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=114) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-04-10T01:34:15.303+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'test_dag', 'test_task', 'scheduled__2025-04-09T00:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/testdag.py', '--cfg-path', '/tmp/tmpq362rb_j']
+[2025-04-10T01:34:15.318+0000] {standard_task_runner.py:72} INFO - Started process 116 to run task
+[2025-04-10T01:34:15.320+0000] {standard_task_runner.py:105} INFO - Job 5: Subtask test_task
+[2025-04-10T01:34:17.124+0000] {task_command.py:467} INFO - Running <TaskInstance: test_dag.test_task scheduled__2025-04-09T00:00:00+00:00 [running]> on host f1ffc118283c
+[2025-04-10T01:34:17.448+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='test_dag' AIRFLOW_CTX_TASK_ID='test_task' AIRFLOW_CTX_EXECUTION_DATE='2025-04-09T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-09T00:00:00+00:00'
+[2025-04-10T01:34:17.451+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-04-10T01:34:17.453+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-04-10T01:34:17.455+0000] {logging_mixin.py:190} INFO - Current task name:test_task state:running start_date:2025-04-10 01:34:15.057324+00:00
+[2025-04-10T01:34:17.457+0000] {logging_mixin.py:190} INFO - Dag name:test_dag and current dag run status:running
+[2025-04-10T01:34:17.458+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-10T01:34:18.543+0000] {logging_mixin.py:190} INFO - {'results': [{'gender': 'male', 'name': {'title': 'Mr', 'first': 'Anatole', 'last': 'Mathieu'}, 'location': {'street': {'number': 7801, 'name': 'Grande Rue'}, 'city': 'Rennes', 'state': 'Haut-Rhin', 'country': 'France', 'postcode': 35094, 'coordinates': {'latitude': '-14.1044', 'longitude': '-156.6674'}, 'timezone': {'offset': '-5:00', 'description': 'Eastern Time (US & Canada), Bogota, Lima'}}, 'email': 'anatole.mathieu@example.com', 'login': {'uuid': '0a4c2c54-9f09-47bd-8409-e3f48d132c24', 'username': 'angrymeercat910', 'password': 'dogfood', 'salt': 'J0aLEQ1r', 'md5': 'e322b08b4ac4541c5e32575714a97713', 'sha1': '54495fa8014fe8819dc2bf30cd5a8c8560988f6e', 'sha256': '264fb4de03b83aa72c263b4787332f756cb819c8b997a7e6ada1d56ceb3ada59'}, 'dob': {'date': '1956-11-22T10:18:54.967Z', 'age': 68}, 'registered': {'date': '2021-02-21T13:04:05.736Z', 'age': 4}, 'phone': '03-81-11-71-28', 'cell': '06-47-41-84-79', 'id': {'name': 'INSEE', 'value': '1561045657332 68'}, 'picture': {'large': 'https://randomuser.me/api/portraits/men/27.jpg', 'medium': 'https://randomuser.me/api/portraits/med/men/27.jpg', 'thumbnail': 'https://randomuser.me/api/portraits/thumb/men/27.jpg'}, 'nat': 'FR'}], 'info': {'seed': '1e64a1eb12337a25', 'results': 1, 'page': 1, 'version': '1.4'}}
+[2025-04-10T01:34:18.544+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-04-10T01:34:18.560+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-10T01:34:18.561+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=test_dag, task_id=test_task, run_id=scheduled__2025-04-09T00:00:00+00:00, execution_date=20250409T000000, start_date=20250410T013415, end_date=20250410T013418
+[2025-04-10T01:34:18.608+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-04-10T01:34:18.609+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-04-10T01:34:18.610+0000] {logging_mixin.py:190} INFO - Dag name:test_dag queued_at:2025-04-10 01:34:01.410200+00:00
+[2025-04-10T01:34:18.611+0000] {logging_mixin.py:190} INFO - Task hostname:f1ffc118283c operator:PythonOperator
+[2025-04-10T01:34:18.671+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-04-10T01:34:18.925+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-04-10T01:34:18.930+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,29 @@
+[2025-04-13T03:46:27.900+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-13T03:46:27.925+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sparktestdag.fetch_task manual__2025-04-13T03:46:25.587883+00:00 [queued]>
+[2025-04-13T03:46:27.940+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sparktestdag.fetch_task manual__2025-04-13T03:46:25.587883+00:00 [queued]>
+[2025-04-13T03:46:27.941+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 1
+[2025-04-13T03:46:28.102+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): fetch_task> on 2025-04-13 03:46:25.587883+00:00
+[2025-04-13T03:46:28.127+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'sparktestdag', 'fetch_task', 'manual__2025-04-13T03:46:25.587883+00:00', '--job-id', '21', '--raw', '--subdir', 'DAGS_FOLDER/sparktestdag.py', '--cfg-path', '/tmp/tmp6ho1fewt']
+[2025-04-13T03:46:28.119+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=222) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-04-13T03:46:28.130+0000] {standard_task_runner.py:105} INFO - Job 21: Subtask fetch_task
+[2025-04-13T03:46:28.130+0000] {standard_task_runner.py:72} INFO - Started process 224 to run task
+[2025-04-13T03:46:28.281+0000] {task_command.py:467} INFO - Running <TaskInstance: sparktestdag.fetch_task manual__2025-04-13T03:46:25.587883+00:00 [running]> on host 2ae87289320a
+[2025-04-13T03:46:28.495+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='sparktestdag' AIRFLOW_CTX_TASK_ID='fetch_task' AIRFLOW_CTX_EXECUTION_DATE='2025-04-13T03:46:25.587883+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-13T03:46:25.587883+00:00'
+[2025-04-13T03:46:28.510+0000] {logging_mixin.py:190} INFO - Task instance is in running state
+[2025-04-13T03:46:28.512+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: queued
+[2025-04-13T03:46:28.513+0000] {logging_mixin.py:190} INFO - Current task name:fetch_task state:running start_date:2025-04-13 03:46:27.926524+00:00
+[2025-04-13T03:46:28.514+0000] {logging_mixin.py:190} INFO - Dag name:sparktestdag and current dag run status:running
+[2025-04-13T03:46:28.516+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-13T03:46:29.148+0000] {logging_mixin.py:190} INFO - {'results': [{'gender': 'female', 'name': {'title': 'Mrs', 'first': 'Dona', 'last': 'Dhamdhame'}, 'location': {'street': {'number': 7339, 'name': 'Rajpath'}, 'city': 'Deoghar', 'state': 'Lakshadweep', 'country': 'India', 'postcode': 99735, 'coordinates': {'latitude': '8.8453', 'longitude': '7.0184'}, 'timezone': {'offset': '-11:00', 'description': 'Midway Island, Samoa'}}, 'email': 'dona.dhamdhame@example.com', 'login': {'uuid': '3460ba48-fae1-4717-b251-55c73a3a40f3', 'username': 'biggoose429', 'password': 'erik', 'salt': 'Q4hDfB0j', 'md5': '0a232134eaf0174ff2fb66e6a4c78eeb', 'sha1': '973bc47ce1f6d103fefff209954a08d45b22f129', 'sha256': '171214f2c585c424bb48d1793e7f88180714c502d78bb69dcb7d24cab624997c'}, 'dob': {'date': '1988-10-13T02:32:40.898Z', 'age': 36}, 'registered': {'date': '2011-05-25T12:00:03.619Z', 'age': 13}, 'phone': '8263092681', 'cell': '9039731694', 'id': {'name': 'UIDAI', 'value': '392234633788'}, 'picture': {'large': 'https://randomuser.me/api/portraits/women/18.jpg', 'medium': 'https://randomuser.me/api/portraits/med/women/18.jpg', 'thumbnail': 'https://randomuser.me/api/portraits/thumb/women/18.jpg'}, 'nat': 'IN'}], 'info': {'seed': 'aab4e20bd88dc934', 'results': 1, 'page': 1, 'version': '1.4'}}
+[2025-04-13T03:46:29.150+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-04-13T03:46:29.168+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-13T03:46:29.170+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=sparktestdag, task_id=fetch_task, run_id=manual__2025-04-13T03:46:25.587883+00:00, execution_date=20250413T034625, start_date=20250413T034627, end_date=20250413T034629
+[2025-04-13T03:46:29.215+0000] {logging_mixin.py:190} INFO - Task instance in success state
+[2025-04-13T03:46:29.216+0000] {logging_mixin.py:190} INFO -  Previous state of the Task instance: running
+[2025-04-13T03:46:29.217+0000] {logging_mixin.py:190} INFO - Dag name:sparktestdag queued_at:2025-04-13 03:46:25.603383+00:00
+[2025-04-13T03:46:29.218+0000] {logging_mixin.py:190} INFO - Task hostname:2ae87289320a operator:PythonOperator
+[2025-04-13T03:46:29.235+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-04-13T03:46:29.270+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-04-13T03:46:29.275+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
