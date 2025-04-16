@@ -2,3 +2,5 @@
 /config
 /plugins
 /.venv
+/pspark/$PWD
+/pspark/metastore_db
