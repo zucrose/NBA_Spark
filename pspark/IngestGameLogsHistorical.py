@@ -19,7 +19,7 @@ spark = SparkSession.builder \
 def func():
     spark.sql('DROP TABLE IF EXISTS local.db.GameLogs')
     #spark.sql('CREATE TABLE IF NOT EXISTS local.db.GameLogs')
-    for i in range(2023,2025):
+    for i in range(2000,2025):
         nextyear=(i + 1) % 100
         if nextyear<10:
             nextyear='0'+str(nextyear)

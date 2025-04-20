@@ -1,8 +1,9 @@
 import time
 
 from pyspark.sql import SparkSession
+from pyspark.sql import Row
 from nba_api.stats.endpoints import playbyplayv3
-#.master('spark://spark:7077') \
+#.master('spark://spark:7077')\
 spark = SparkSession.builder \
     .appName("NBAPlayByPlay")\
     .config('spark.jars.packages', 'org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.8.1') \
@@ -20,16 +21,19 @@ def rddfunc(row):
     flg=1
     while flg==1:
         try:
-            xpdf = playbyplayv3.PlayByPlayV3(game_id=row[0]).get_data_frames()[0]
+            xpdf = playbyplayv3.PlayByPlayV3(game_id=row[0]).get_dict()
+            dictlist=xpdf['game']['actions']
+            ls=[]
+            for i in dictlist:
+                i['gameId']=xpdf['game']['gameId']
+                ls.append(Row(**i))
 
-            #print(row[0])
             flg = 0
-            #print(flags)
-            return xpdf
+            return ls
         except Exception as e:
             flg = 1
             print(e)
-            time.sleep(30)
+            time.sleep(45)
 
 
 
@@ -38,36 +42,39 @@ def rddfunc(row):
 
 def ingestplaybyplay():
 
-    df=spark.sql("Select GAME_ID from local.db.GameLogs where PLAYOFFS='1' ")
-    sdf=spark.createDataFrame(df.take(100))
-    playbyplayRDD =sdf.rdd.map(rddfunc)
-
-    ls=playbyplayRDD.collect()
+    gamelist=spark.sql("Select GAME_ID from local.db.GameLogs order by GAME_ID ").collect()
     spark.sql('DROP TABLE IF EXISTS local.db.PlayByPlay ')
-    for i in ls:
-        trial = spark.createDataFrame(i)
+    for i in range(0,len(gamelist),100):
+        sublist=gamelist[i:i+100]
+        print(i,i+100)
+        #print(sublist)
+        sdf=spark.createDataFrame(sublist)
+        sdf.show()
+        playbyplayRDD =sdf.rdd.flatMap(rddfunc)
+        ls=playbyplayRDD.collect()
+        y=spark.createDataFrame(ls)
+
         if spark.catalog.tableExists('local.db.PlayByPlay'):
-            trial.writeTo('local.db.PlayByPlay').append()
+            y.writeTo('local.db.PlayByPlay').append()
         else:
-            trial.writeTo('local.db.PlayByPlay').createOrReplace()
+            y.writeTo('local.db.PlayByPlay').createOrReplace()
+        check()
 
-    try :
-        print('hello')
-        #playbyplayDF=playbyplayRDD.toDF()
-        #playbyplayDF.show()
-    except Exception as e:
-      print(e)
-    #playbyplayDF.show()
-
-#ingestplaybyplay()
 
 def func():
-    print(playbyplayv3.PlayByPlayV3(game_id='0041700315').get_data_frames()[0])
+    x=playbyplayv3.PlayByPlayV3(game_id='0041700315').get_dict()
+    dictlist = x['game']['actions']
+    for i in dictlist:
+        i['gameId'] = x['game']['gameId']
+    print(dictlist[0])
+    #print(x.game)
 
 def check():
     df = spark.sql('Select count(*),gameId from local.db.PlayByPlay group by gameId')
     df.show()
     df2 = spark.sql('Select count(*) from local.db.PlayByPlay ')
     df2.show()
-#ingestplaybyplay()
+
+#func()
+ingestplaybyplay()
 check()
