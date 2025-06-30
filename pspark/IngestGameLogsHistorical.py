@@ -69,5 +69,6 @@ def func():
 def check():
     #spark.sql('DROP TABLE  IF EXISTS local.db.GameLogs PURGE')
     spark.sql('Select SEASON_YEAR,PLAYOFFS,count(*) from local.db.GameLogs Group BY SEASON_YEAR,PLAYOFFS').show()
-func()
+    spark.sql('Select * from local.db.playbyplay ').show()
+#func()
 check()
