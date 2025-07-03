@@ -11,7 +11,7 @@ spark = SparkSession.builder \
     .config("spark.sql.extensions", 'org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions') \
     .config("spark.sql.catalog.spark_catalog", "org.apache.iceberg.spark.SparkSessionCatalog") \
     .config("spark.sql.catalog.local", "org.apache.iceberg.spark.SparkCatalog") \
-    .config('spark.sql.catalog.local.warehouse', '$PWD/warehouse') \
+    .config('spark.sql.catalog.local.warehouse', '../$PWD/warehouse') \
     .config('spark.sql.defaultCatalog', 'local') \
     .config('spark.sql.catalog.local.type', 'hadoop') \
     .config("spark.sql.catalog.spark_catalog.type", "hive") \
@@ -46,4 +46,6 @@ for i in team_names:
     else:
           sdf.writeTo('local.db.dim_team').createOrReplace()
 
-spark.sql('Select * from local.db.dim_team').show()
+
+
+
