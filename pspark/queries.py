@@ -14,6 +14,7 @@ spark = SparkSession.builder \
     .config("spark.sql.catalog.hc.type", "hive") \
     .getOrCreate()
 
-spark.sql('Select * from local.db.Playbyplay ').show()
+#spark.sql('Select * from local.db.Playbyplay ').show()
 
-spark.sql('Select * from local.db.GameLogs ').show()
+df=spark.sql('Select distinct subtype from local.db.dim_action where subType like "%Float%"').collect()
+print(df[1]['subtype'])
